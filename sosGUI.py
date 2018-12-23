@@ -36,3 +36,8 @@ def gamePlay(mySurface,board,n,scores):
 
 # Procédure qui initialise et lance la partie
 def SOS(n):
+
+
+# Appel de la procédure permettant de lancer le jeu
+n = int(input("Choisissez la taille de votre tableau de jeu : "))
+SOS(n)
