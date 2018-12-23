@@ -4,10 +4,15 @@
 
 # Fonction de création d'un nouveau tableau
 def newboard(n):
+    board = []
+    for ligne in range(n):
+        board.append(n *[0])
+    return board
 
 
 # Fonction qui check si la case sélectionnée par le joueur est correcte
-def possibleSquare(noard,n,i,j):
+def possibleSquare(board,n,i,j):
+    return True if board[i][j] == 0 and (0<i<=n and 0<j<= n) else False
 
 
 # Procédure qui met à jour lines et scores si on a posé un S
@@ -24,3 +29,4 @@ def update(board,n,i,j,l,scores,player,lines):
 
 # Fonction qui retourne le gagnant de la partie
 def winner(scores):
+    return "Le joueur 1 à gagné" if scores[0] > scores[1] else "Le joueur 2 à gagné"
