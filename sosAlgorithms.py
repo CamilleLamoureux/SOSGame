@@ -11,19 +11,19 @@ def newboard(n):
 
 
 # Fonction qui check si la case sélectionnée par le joueur est correcte
-def possibleSquare(board,n,i,j):
+#def possibleSquare(board,n,i,j):
 
 
 # Procédure qui met à jour lines et scores si on a posé un S
-def updateScoreS(board,n,i,j,scores,player,lines):
+#def updateScoreS(board,n,i,j,scores,player,lines):
 
 
 # Procédure qui met à jour lines et scores si on a posé un O
-def updateScoreO(board,n,i,j,scores,player,lines):
+#def updateScoreO(board,n,i,j,scores,player,lines):
 
 
 # Prodécudre qui met à jour le plateau de jeu
-def update(board,n,i,j,l,scores,player,lines):
+#def update(board,n,i,j,l,scores,player,lines):
 
 
 # Fonction qui retourne le gagnant de la partie
