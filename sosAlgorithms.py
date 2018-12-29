@@ -12,7 +12,6 @@ def newboard(n):
 
 # Fonction qui check si la case sélectionnée par le joueur est correcte
 def possibleSquare(board,n,i,j):
-    return True if board[i][j] == 0 and (0<i<=n and 0<j<= n) else False
 
 
 # Procédure qui met à jour lines et scores si on a posé un S
