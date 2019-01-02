@@ -1,25 +1,38 @@
 # 2e projet de Python - SOS GAME (Groupe de 2)
 # Anaïs Depeau et Camille Lamoureux
-# Bibliothèque des fonctions algorithmiques permettant le jeu
+# Bibliotheque des fonctions algorithmiques permettant le jeu
 
-# Fonction de création d'un nouveau tableau
+# Fonction de creation d'un nouveau tableau
 def newboard(n):
+    board = []
+    for ligne in range(n):
+        board.append(n * [0])
+    return board
 
 
-# Fonction qui check si la case sélectionnée par le joueur est correcte
-def possibleSquare(noard,n,i,j):
+# Fonction qui check si la case selectionnee par le joueur est correcte
+def possibleSquare(board, n, i, j):
+    return True if board[i][j] == 0 and (0 < i <= n and 0 < j <= n) else False
 
 
-# Procédure qui met à jour lines et scores si on a posé un S
-def updateScoreS(board,n,i,j,scores,player,lines):
+# Procedure qui met a jour lines et scores si on a pose un S
+def updateScoreS(board, n, i, j, scores, player, lines):
+    board[i][j] = 1
+    if possibleSquare(board, n, i, j):
+        if (board[i-1][j]==2 and board[i-2][j]==1) or (board[i+1][j]==2 and board[i+2][j]==1) or (board[i][j-1]==2 and board[i][j-2]==1) or (board[i][j+1]==2 and board[i][j+2]==1) or (board[i-1][j-1]==2 and board[i-2][j-2]==1) or (board[i+1][j+1]==2 and board[i+2][j+2]==1) or ( board[i+1][j-1]==2 and board[i+2][j-2]==1) or (board[i-1][j+1]==2 and board[i-2][j+2]==1):
+            scores[player] += 1
+            lines
 
+# Procedure qui met a jour lines et scores si on a pose un O
+def updateScoreO(board, n, i, j, scores, player, lines):
+    board[i][j] = 2
+    if possibleSquare(board, n, i,j):
+        if (board[i - 1][j] == 1 and board[i + 1][j] == 1) or (board[i][j - 1] == 1 and board[i][j + 1] == 1) or (board[i - 1][j - 1] == 1 and board[i + 1][j + 1] == 1) or (board[i - 1][j + 1] == 1 and board[i + 1][j - 1] == 1):
+            scores[player] += 1
+            lines
 
-# Procédure qui met à jour lines et scores si on a posé un O
-def updateScoreO(board,n,i,j,scores,player,lines):
-
-
-# Prodécudre qui met à jour le plateau de jeu
-def update(board,n,i,j,l,scores,player,lines):
+# Prodecudre qui met a jour le plateau de jeu
+def update(board, n, i, j, l, scores, player, lines):
 
 
 # Fonction qui retourne le gagnant de la partie
