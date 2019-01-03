@@ -32,8 +32,14 @@ def updateScoreO(board, n, i, j, scores, player, lines):
             lines
 
 # Prodecudre qui met a jour le plateau de jeu
-def update(board, n, i, j, l, scores, player, lines):
+#def update(board, n, i, j, l, scores, player, lines):
 
 
 # Fonction qui retourne le gagnant de la partie
 def winner(scores):
+    if scores[0] > scores[1]:
+        return "Player 1 wins !"
+    elif scores[0] == scores[1]:
+        return "Egality"
+    else :
+        return "Player 2 wins !"

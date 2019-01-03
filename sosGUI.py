@@ -2,8 +2,12 @@
 # Anaïs Depeau et Camille Lamoureux
 # Bibliothèque des fonctions graphiques
 
+
+# Importation des bibliothèques nécessaires
 import pygame
 from pygame.locals import *
+import sosAlgorithms
+
 
 # Procédure qui dessine le tableau initial
 def drawBoard(mySurface,n):
