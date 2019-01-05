@@ -51,9 +51,26 @@ def drawBoard(mySurface,n):
 # Procédure qui permet d'afficher quel joueur doit jouer
 #def displayPlayer(mySurface,n,player):
 
+#Fonction qui retourne les coordonnées du coin en haut à gauche de la case cliquée
+def case(i,j):
+    x = i - (i%75) + 40
+    y = j - (j%75)
+    return x,y
 
 # Procédure qui affiche la lettre posée par le joueur dont c'est le tour
-#def drawCell(mySurface,board,i,j,player):
+def drawCell(mySurface,board,i,j):
+    x,y = case(i, j)
+
+    NOIR = (0,0,0)
+
+    if (i-40)%75 <= 37:
+        print("S")
+        l = 1
+    else :
+        print("O")
+        l = 2
+
+    print(board)
 
 
 # Procédure qui dessine les nouvelles lignes représentant les alignements
@@ -79,6 +96,8 @@ def SOS(n):
     pygame.display.set_caption('SOS Game')
     inProgress = True
 
+    mySurface.fill((50,50,50))
+    board = sosAlgorithms.newboard(n)
     drawBoard(mySurface, n)
 
     while inProgress:
@@ -89,6 +108,11 @@ def SOS(n):
             if event.type == QUIT:
                 inProgress = False
             pygame.display.update()
+
+            if event.type == MOUSEBUTTONDOWN and event.button == 1:
+                i = event.pos[0]
+                j = event.pos[1]
+                drawCell(mySurface,board,i,j)
 
     pygame.quit()
 
