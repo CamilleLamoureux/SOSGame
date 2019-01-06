@@ -23,6 +23,7 @@ def updateScoreS(board, n, i, j, scores, player, lines):
             scores[player] += 1
             lines
 
+
 # Procedure qui met a jour lines et scores si on a pose un O
 def updateScoreO(board, n, i, j, scores, player, lines):
     board[i][j] = 2
@@ -31,8 +32,17 @@ def updateScoreO(board, n, i, j, scores, player, lines):
             scores[player] += 1
             lines
 
+
 # Prodecudre qui met a jour le plateau de jeu
-#def update(board, n, i, j, l, scores, player, lines):
+# AJOUTER SCORES et LINES en variables
+def update(board, n, i, j, l, player):
+    print(i,j)
+    board[i][j] = l
+
+    #if l == 1 :
+    #    updateScoreS(board,n,i,j,player,lines)
+    #elif l == 2:
+    #    updateScoreO(board,n,i,j,scores,player,lines)
 
 
 # Fonction qui retourne le gagnant de la partie

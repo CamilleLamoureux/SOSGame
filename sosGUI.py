@@ -54,6 +54,9 @@ def drawBoard(mySurface,n):
 def case(i,j):
     x = i - (i%75)
     y = j - (j%75)
+    x = x//75
+    y = y//75
+
     return x,y
 
 
@@ -71,15 +74,14 @@ def drawCell(mySurface,board,i,j,player):
     S = font.render("S", 1, COULEUR_JOUEUR)
     O = font.render("O", 1, COULEUR_JOUEUR)
 
-    i, j = case(i, j)
-    pygame.draw.rect(mySurface, GRIS_FOND, (i + 2, j + 2, 72, 72))
+    l = board[i][j]
 
-    l = board[i//75][j//75]
+    pygame.draw.rect(mySurface, GRIS_FOND, (i*75 + 2, j*75 + 2, 72, 72))
 
     if l == 1:
-        mySurface.blit(S, (i + 15, j + 7))
-    else :
-        mySurface.blit(O, (i + 15, j + 7))
+        mySurface.blit(S, (i*75 + 15, j*75 + 7))
+    elif l == 2:
+        mySurface.blit(O, (i*75 + 15, j*75 + 7))
 
 
 
@@ -138,7 +140,7 @@ def SOS(n):
             pygame.display.update()
 
             if event.type == MOUSEBUTTONUP and event.button == 1:
-                print("click !")
+
                 i = event.pos[0]
                 j = event.pos[1]
 
@@ -146,9 +148,13 @@ def SOS(n):
                     l = 1
                 else:
                     l = 2
-                board[i//75][j//75] = l
 
-                drawCell(mySurface,board,i,j,player,l)
+                i, j = case(i, j)
+
+                # AJOUTER SCORES et LINES en variables
+                sosAlgorithms.update(board, n, i, j, l, player)
+
+                drawCell(mySurface,board,i,j,player)
 
                 if player == 1:
                     player = 0
