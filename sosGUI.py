@@ -8,11 +8,14 @@ import pygame
 from pygame.locals import *
 import sosAlgorithms
 
-
+############################################################" GRAPHISME #######################################################
 # Procédure qui dessine le tableau initial
 def drawBoard(mySurface,n):
     BLANC = (255, 255, 255)
     GRIS = (150,150,150)
+    font = pygame.font.Font(None, 30)
+    S = font.render("S", 1, GRIS)
+    O = font.render("O", 1, GRIS)
 
     x, y = 0,0
     for i in range(n + 1):
@@ -31,12 +34,7 @@ def drawBoard(mySurface,n):
         for colonne in range(n):
             pygame.draw.line(mySurface, GRIS, (x + 37, y + 10), (x + 37, y + 65), 2)
 
-            font = pygame.font.Font(None, 30)
-
-            S = font.render("S", 1, GRIS)
             mySurface.blit(S,(x + 10, y + 35))
-
-            O = font.render("O", 1, GRIS)
             mySurface.blit(O,(x + 47, y + 35))
 
             x += 75
@@ -51,6 +49,7 @@ def drawBoard(mySurface,n):
 # Procédure qui permet d'afficher quel joueur doit jouer
 #def displayPlayer(mySurface,n,player):
 
+
 # Fonction qui retourne les coordonnées du coin en haut à gauche de la case cliquée
 def case(i,j):
     x = i - (i%75)
@@ -58,46 +57,31 @@ def case(i,j):
     return x,y
 
 
-# Fonction qui retourne la couleur dans laquelle doit être mis la lettre
-def colorPlayer(board):
-    nbr = 0
-    for colonne in board :
-        for element in colonne:
-            if element != 0:
-                nbr += 1
-
-    nombre_tours = n**2 - (nbr)
-
-    if nombre_tours%2 == 0:
-        return (255,0,0)
-    else:
-        return (0,255,0)
-
 # Procédure qui affiche la lettre posée par le joueur dont c'est le tour
-def drawCell(mySurface,board,i,j):
-    x,y = case(i, j)
+def drawCell(mySurface,board,i,j,player):
 
     font = pygame.font.Font(None, 100)
 
     GRIS_FOND = (50,50,50)
-    COULEUR_JOUEUR = colorPlayer(board)
+    ROUGE = (255,0,0)
+    VERT = (0,255,0)
 
-    if i%75 <= 37:
-        print("S")
-        l = 1
-        pygame.draw.rect(mySurface,GRIS_FOND,(x+2,y+2,72,72))
-        S = font.render("S", 1, COULEUR_JOUEUR)
-        mySurface.blit(S, (x + 15, y + 7))
+    COULEUR_JOUEUR = ROUGE if player == 0 else VERT
 
+    S = font.render("S", 1, COULEUR_JOUEUR)
+    O = font.render("O", 1, COULEUR_JOUEUR)
+
+    i, j = case(i, j)
+    pygame.draw.rect(mySurface, GRIS_FOND, (i + 2, j + 2, 72, 72))
+
+    l = board[i//75][j//75]
+
+    if l == 1:
+        mySurface.blit(S, (i + 15, j + 7))
     else :
-        print("O")
-        l = 2
-        pygame.draw.rect(mySurface,GRIS_FOND, (x+2, y+2, 72, 72))
-        O = font.render("O", 1, COULEUR_JOUEUR)
-        mySurface.blit(O, (x + 15, y + 7))
+        mySurface.blit(O, (i + 15, j + 7))
 
-    board[i//75][j//75] = l
-    print(board)
+
 
 
 # Procédure qui dessine les nouvelles lignes représentant les alignements
@@ -108,8 +92,24 @@ def drawCell(mySurface,board,i,j):
 #def displayWinner(mySurface,n,scores):
 
 
+######################################################## JEU ###########################################################
+
 # Fonction qui permet au joueur de choisir une case et la lettre qu'il souhaite y mettre
-#def selectSquare(mySurface,board,n):
+def selectSquare(mySurface,board,n):
+   print("i'm in")
+   for event in pygame.event.get():
+       int("here")
+       if event.type == MOUSEBUTTONUP and event.button == 1:
+           print("click !")
+           i = event.pos[0]
+           j = event.pos[1]
+
+           i,j = case(i,j)
+
+           if i%75 <= 37:
+               l = 1
+           else:
+               l = 2
 
 
 # Procédure qui gère le déroulement de la partie
@@ -126,6 +126,7 @@ def SOS(n):
     mySurface.fill((50,50,50))
     board = sosAlgorithms.newboard(n)
     drawBoard(mySurface, n)
+    player = 0
 
     while inProgress:
 
@@ -136,10 +137,23 @@ def SOS(n):
                 inProgress = False
             pygame.display.update()
 
-            if event.type == MOUSEBUTTONDOWN and event.button == 1:
+            if event.type == MOUSEBUTTONUP and event.button == 1:
+                print("click !")
                 i = event.pos[0]
                 j = event.pos[1]
-                drawCell(mySurface,board,i,j)
+
+                if i % 75 <= 37:
+                    l = 1
+                else:
+                    l = 2
+                board[i//75][j//75] = l
+
+                drawCell(mySurface,board,i,j,player,l)
+
+                if player == 1:
+                    player = 0
+                else:
+                    player = 1
 
     pygame.quit()
 
