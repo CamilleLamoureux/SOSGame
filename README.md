@@ -72,7 +72,7 @@
 		○ Affichage du gagnant du type "Reds win !" sans effacer les scores et le plateau
 
 	- Sous-programmes (graphisme):
-		○ drawBoard(mySurface) = dessine le plateau initial
+		○ drawBoard(mySurface,n) = dessine le plateau initial
 		○ displayScore(mySurface,n,scores) = affiche les scores des joueurs
 		○ displayPlayer(mySurface,n,player) = place la flèche à côté du score du joueur dont c'est le tour
 		○ drawCell(mySurface,board,i,j,player) = dessine le contenue de la case (i,j) de la couleur du joueur dont c'est le tour

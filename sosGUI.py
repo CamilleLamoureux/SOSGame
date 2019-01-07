@@ -61,7 +61,7 @@ def case(i,j):
 
 
 # Procédure qui affiche la lettre posée par le joueur dont c'est le tour
-def drawCell(mySurface,board,i,j,player):
+#def drawCell(mySurface,board,i,j,player):
 
     font = pygame.font.Font(None, 100)
 
