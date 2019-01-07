@@ -43,7 +43,6 @@ def updateScoreO(board, n, i, j, scores, player, lines):
 # Prodecudre qui met a jour le plateau de jeu
 # AJOUTER SCORES et LINES en variables
 def update(board, n, i, j, l, player):
-    print(i,j)
     board[i][j] = l
 
     #if l == 1 :
