@@ -91,8 +91,10 @@ def drawCell(mySurface,board,i,j,player):
 
 
 # Procédure qui dessine les nouvelles lignes représentant les alignements
-#def drawLines(mySurface,lines,player):
-
+def drawLines(mySurface,lines,player):
+    NOIR =  (0,0,0)
+    for ligne in lines:
+        pygame.draw.line(mySurface, NOIR, ligne[0], ligne[1], 5)
 
 # Procédure qui permet d'afficher le joueur gagnant
 #def displayWinner(mySurface,n,scores):
@@ -167,6 +169,10 @@ def SOS(n):
 
                 drawCell(mySurface,board,i,j,player)
 
+                lines = [[(1*75+40+37,1+75+100+37),(3*75+40+37,1*75+100+37)]]
+
+                drawLines(mySurface,lines, player)
+                
                 if player == 1:
                     player = 0
                 else:
