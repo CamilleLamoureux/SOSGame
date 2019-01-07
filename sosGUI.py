@@ -61,7 +61,7 @@ def case(i,j):
 
 
 # Procédure qui affiche la lettre posée par le joueur dont c'est le tour
-#def drawCell(mySurface,board,i,j,player):
+def drawCell(mySurface,board,i,j,player):
 
     font = pygame.font.Font(None, 100)
 
@@ -97,21 +97,24 @@ def case(i,j):
 ######################################################## JEU ###########################################################
 
 # Fonction qui permet au joueur de choisir une case et la lettre qu'il souhaite y mettre
-def selectSquare(mySurface,board,n):
-   print("i'm in")
-   for event in pygame.event.get():
-       int("here")
-       if event.type == MOUSEBUTTONUP and event.button == 1:
-           print("click !")
-           i = event.pos[0]
-           j = event.pos[1]
 
-           i,j = case(i,j)
+# CETTE FONCTION NE MARCHAIT PAS EN ETANT SORTIE DE LA BOUCLE PRINCIPALE, LE CODE Y A DONC ETE IMPLEMENTE
+#def selectSquare(mySurface,board,n):
+#   print("i'm in")
+#   for event in pygame.event.get():
+#       int("here")
+#       if event.type == MOUSEBUTTONUP and event.button == 1:
+#           print("click !")
+#           i = event.pos[0]
+#           j = event.pos[1]
+#
+#           i,j = case(i,j)
+#
+#           if i%75 <= 37:
+#               l = 1
+#           else:
+#               l = 2
 
-           if i%75 <= 37:
-               l = 1
-           else:
-               l = 2
 
 
 # Procédure qui gère le déroulement de la partie
