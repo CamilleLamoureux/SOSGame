@@ -127,7 +127,7 @@ def SOS(n):
             pygame.display.update()
 
 
-            if event.type == MOUSEBUTTONUP and event.button == 1 :
+            if event.type == MOUSEBUTTONUP and event.button == 1 and 40<=event.pos[0]<=n*75 and 100<=event.pos[1<=n*75]:
 
                 i = event.pos[0]
                 j = event.pos[1]
