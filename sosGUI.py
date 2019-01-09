@@ -46,18 +46,23 @@ def drawBoard(mySurface, n):
 
 # Procédure qui affiche les scores des joueurs
 def displayScore(mySurface, n, scores):
-    font = pygame.font.Font(None, 50)
-    font_joueur = pygame.font.Font(None, 35)
-    affichage_scores = font.render("Scores :", 1, (0, 0, 0))
-    joueur1 = font_joueur.render("Joueur 1 :", 1, (255, 255, 255))
-    joueur2 = font_joueur.render("Joueur 2 :", 1, (255, 255, 255))
-    pts_joueur_1 = font_joueur.render(str(scores[0]), 1, (255, 255, 255))
-    pts_joueur_2 = font_joueur.render(str(scores[1]), 1, (255, 255, 255))
-    mySurface.blit(affichage_scores, (40 + n * 75 + 100, 100))
-    mySurface.blit(joueur1, (40 + n * 75 + 100, 140))
-    mySurface.blit(pts_joueur_1, (40 + n * 75 + 250, 140))
-    mySurface.blit(joueur2, (40 + n * 75 + 100, 170))
-    mySurface.blit(pts_joueur_2, (40 + n * 75 + 250, 170))
+
+    BLEU = (28, 95, 119)
+    VIOLET = (87, 25, 83)
+    MARRON_CLAIR = (154, 130, 130)
+
+    font = pygame.font.Font(None, 46)
+    font_joueur = pygame.font.Font(None, 33)
+    affichage_scores = font.render("Scores :", 1, (MARRON_CLAIR))
+    joueur1 = font_joueur.render("Joueur 1 :", 1, (BLEU))
+    joueur2 = font_joueur.render("Joueur 2 :", 1, (VIOLET))
+    pts_joueur_1 = font_joueur.render(str(scores[0]), 1, (BLEU))
+    pts_joueur_2 = font_joueur.render(str(scores[1]), 1, (VIOLET))
+    mySurface.blit(affichage_scores, (40 + n * 75 + 70, 140))
+    mySurface.blit(joueur1, (40 + n * 75 + 90, 190))
+    mySurface.blit(pts_joueur_1, (40 + n * 75 + 210, 190))
+    mySurface.blit(joueur2, (40 + n * 75 + 90, 220))
+    mySurface.blit(pts_joueur_2, (40 + n * 75 + 210, 220))
 
 
 # Procédure qui permet d'afficher quel joueur doit jouer
@@ -79,10 +84,10 @@ def case(i, j):
 def drawCell(mySurface, board, i, j, player):
     font = pygame.font.Font(None, 100)
 
-    BLEU = (28,95,119)
-    VIOLET = (87,25,83)
-    BLEU_FOND = (186,207,214)
-    VIOLET_FOND = (204,186,203)
+    BLEU = (28, 95, 119)
+    VIOLET = (87, 25, 83)
+    BLEU_FOND = (186, 207, 214)
+    VIOLET_FOND = (204, 186, 203)
 
     COULEUR_JOUEUR = BLEU if player == 0 else VIOLET
     COULEUR_FOND = BLEU_FOND if player == 0 else VIOLET_FOND
@@ -92,7 +97,7 @@ def drawCell(mySurface, board, i, j, player):
 
     l = board[i][j]
 
-    pygame.draw.rect(mySurface, COULEUR_FOND, (i*75 + 2 + 40, j*75 + 2 + 100, 72, 72))
+    pygame.draw.rect(mySurface, COULEUR_FOND, (i * 75 + 2 + 40, j * 75 + 2 + 100, 72, 72))
 
     if l == 1:
         mySurface.blit(S, (i * 75 + 15 + 40, j * 75 + 7 + 100))
@@ -161,9 +166,9 @@ def SOS(n):
                 i, j = case(i, j)
 
                 sosAlgorithms.update(board, n, i, j, l, scores, player, lines)
-                drawCell(mySurface,board,i,j,player)
-                lines = [[(1*75+40+37,1+75+100+37),(3*75+40+37,3*75+100+37)]]
-                drawLines(mySurface,lines, player)
+                drawCell(mySurface, board, i, j, player)
+                lines = [[(1 * 75 + 40 + 37, 1 + 75 + 100 + 37), (3 * 75 + 40 + 37, 3 * 75 + 100 + 37)]]
+                drawLines(mySurface, lines, player)
 
                 if player == 1:
                     player = 0
