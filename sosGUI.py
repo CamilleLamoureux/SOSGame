@@ -60,7 +60,6 @@ def case(i,j):
     y = j - (j%75)
     x = x//75
     y = y//75
-    print(x,y)
     return x,y
 
 
@@ -97,35 +96,10 @@ def drawLines(mySurface,lines,player):
         pygame.draw.line(mySurface, NOIR, ligne[0], ligne[1], 5)
 
 # Procédure qui permet d'afficher le joueur gagnant
-#def displayWinner(mySurface,n,scores):
-
+def displayWinner(mySurface,n,scores):
+    print("Winner")
 
 ############################################################### JEU ##################################################################
-
-# Fonction qui permet au joueur de choisir une case et la lettre qu'il souhaite y mettre
-
-# CETTE FONCTION NE MARCHAIT PAS EN ETANT SORTIE DE LA BOUCLE PRINCIPALE, LE CODE Y A DONC ETE IMPLEMENTE
-#def selectSquare(mySurface,board,n):
-#   print("i'm in")
-#   for event in pygame.event.get():
-#       int("here")
-#       if event.type == MOUSEBUTTONUP and event.button == 1:
-#           print("click !")
-#           i = event.pos[0]
-#           j = event.pos[1]
-#
-#           i,j = case(i,j)
-#
-#           if i%75 <= 37:
-#               l = 1
-#           else:
-#               l = 2
-
-
-
-# Procédure qui gère le déroulement de la partie
-#def gamePlay(mySurface,board,n,scores):
-
 
 # Procédure qui initialise et lance la partie
 def SOS(n):
@@ -137,19 +111,21 @@ def SOS(n):
     pygame.display.set_caption('SOS Game')
     inProgress = True
 
-    mySurface.fill((50,50,50))
+    mySurface.fill((44,35,24))
     board = sosAlgorithms.newboard(n)
     drawBoard(mySurface, n)
+
     player = 0
+    scores = [0,0]
+    lines = []
 
     while inProgress:
-
         for event in pygame.event.get():
-
             # Si on clique sur le bouton "fermer de la fenêtre"
             if event.type == QUIT:
                 inProgress = False
             pygame.display.update()
+
 
             if event.type == MOUSEBUTTONUP and event.button == 1 :
 
@@ -161,22 +137,30 @@ def SOS(n):
                 else:
                     l = 2
 
-                print(l)
                 i, j = case(i, j)
 
-                # AJOUTER SCORES et LINES en variables
-                sosAlgorithms.update(board, n, i, j, l, player)
-
+                sosAlgorithms.update(board, n, i, j, l, scores, player, lines)
                 drawCell(mySurface,board,i,j,player)
-
                 lines = [[(1*75+40+37,1+75+100+37),(3*75+40+37,1*75+100+37)]]
-
                 drawLines(mySurface,lines, player)
-                
+
+
                 if player == 1:
                     player = 0
                 else:
                     player = 1
+
+        # Test pour savoir si c'est la fin de la partie
+        nbr = 0
+        for colonne in board:
+            for element in colonne:
+                if element == 0 :
+                    break
+                else :
+                    nbr += 1
+        if nbr == n**2:
+            sosAlgorithms.winner(scores)
+            displayWinner(mySurface,n,scores)
 
     pygame.quit()
 
