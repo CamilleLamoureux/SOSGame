@@ -12,12 +12,12 @@ import sosAlgorithms
 # Procédure qui dessine le tableau initial
 def drawBoard(mySurface,n):
     BLANC = (255, 255, 255)
-    GRIS = (150,150,150)
+    MARRON_CLAIR = (112,104,104)
 
     font = pygame.font.Font(None, 30)
 
-    S = font.render("S", 1, GRIS)
-    O = font.render("O", 1, GRIS)
+    S = font.render("S", 1, MARRON_CLAIR)
+    O = font.render("O", 1, MARRON_CLAIR)
 
     x, y = 40,100
     for i in range(n + 1):
@@ -34,7 +34,7 @@ def drawBoard(mySurface,n):
     x,y = 40,100
     for ligne in range(n):
         for colonne in range(n):
-            pygame.draw.line(mySurface, GRIS, (x + 37, y + 10), (x + 37, y + 65), 2)
+            pygame.draw.line(mySurface, MARRON_CLAIR, (x + 37, y + 10), (x + 37, y + 65), 2)
 
             mySurface.blit(S,(x + 10, y + 35))
             mySurface.blit(O,(x + 47, y + 35))
@@ -68,18 +68,20 @@ def drawCell(mySurface,board,i,j,player):
 
     font = pygame.font.Font(None, 100)
 
-    GRIS_FOND = (50,50,50)
-    ROUGE = (255,0,0)
-    VERT = (0,255,0)
+    BLEU = (28,95,119)
+    VIOLET = (87,25,83)
+    BLEU_FOND = (186,207,214)
+    VIOLET_FOND = (204,186,203)
 
-    COULEUR_JOUEUR = ROUGE if player == 0 else VERT
+    COULEUR_JOUEUR = BLEU if player == 0 else VIOLET
+    COULEUR_FOND = BLEU_FOND if player == 0 else VIOLET_FOND
 
     S = font.render("S", 1, COULEUR_JOUEUR)
     O = font.render("O", 1, COULEUR_JOUEUR)
 
     l = board[i][j]
 
-    pygame.draw.rect(mySurface, GRIS_FOND, (i*75 + 2 + 40, j*75 + 2 + 100, 72, 72))
+    pygame.draw.rect(mySurface, COULEUR_FOND, (i*75 + 2 + 40, j*75 + 2 + 100, 72, 72))
 
     if l == 1:
         mySurface.blit(S, (i*75 + 15 + 40, j*75 + 7 + 100))
@@ -110,8 +112,8 @@ def SOS(n):
     mySurface = pygame.display.set_mode((LARGEUR,HAUTEUR))
     pygame.display.set_caption('SOS Game')
     inProgress = True
-
-    mySurface.fill((44,35,24))
+    
+    mySurface.fill((188,174,174))
     board = sosAlgorithms.newboard(n)
     drawBoard(mySurface, n)
 
@@ -141,7 +143,7 @@ def SOS(n):
 
                 sosAlgorithms.update(board, n, i, j, l, scores, player, lines)
                 drawCell(mySurface,board,i,j,player)
-                lines = [[(1*75+40+37,1+75+100+37),(3*75+40+37,1*75+100+37)]]
+                lines = [[(1*75+40+37,1+75+100+37),(3*75+40+37,3*75+100+37)]]
                 drawLines(mySurface,lines, player)
 
 
