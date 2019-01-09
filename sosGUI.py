@@ -8,11 +8,12 @@ import pygame
 from pygame.locals import *
 import sosAlgorithms
 
+
 ############################################################# GRAPHISME ###########################################################
 # Procédure qui dessine le tableau initial
 def drawBoard(mySurface, n):
     BLANC = (255, 255, 255)
-    MARRON_CLAIR = (154,130,130)
+    MARRON_CLAIR = (154, 130, 130)
 
     font = pygame.font.Font(None, 30)
 
@@ -46,7 +47,6 @@ def drawBoard(mySurface, n):
 
 # Procédure qui affiche les scores des joueurs
 def displayScore(mySurface, n, scores):
-
     BLEU = (28, 95, 119)
     VIOLET = (87, 25, 83)
     MARRON_CLAIR = (154, 130, 130)
@@ -58,6 +58,8 @@ def displayScore(mySurface, n, scores):
     joueur2 = font_joueur.render("Joueur 2 :", 1, (VIOLET))
     pts_joueur_1 = font_joueur.render(str(scores[0]), 1, (BLEU))
     pts_joueur_2 = font_joueur.render(str(scores[1]), 1, (VIOLET))
+    pygame.draw.rect(mySurface, (188, 174, 174), (40 + n * 75 + 205, 190, 75, 100))
+
     mySurface.blit(affichage_scores, (40 + n * 75 + 70, 140))
     mySurface.blit(joueur1, (40 + n * 75 + 90, 190))
     mySurface.blit(pts_joueur_1, (40 + n * 75 + 210, 190))
@@ -66,7 +68,17 @@ def displayScore(mySurface, n, scores):
 
 
 # Procédure qui permet d'afficher quel joueur doit jouer
-# def displayPlayer(mySurface,n,player):
+def displayPlayer(mySurface, n, player):
+    font = pygame.font.Font(None, 38)
+    quiletour = font.render("->", 1, (151,223,198))
+    pygame.draw.rect(mySurface, (188, 174, 174), (40 + n * 75 + 65, 180, 30, 100))
+
+    if player == 0:
+
+        mySurface.blit(quiletour, (40 + n * 75 + 65, 185))
+    else:
+
+        mySurface.blit(quiletour, (40 + n * 75 + 65, 215))
 
 
 # Fonction qui retourne les coordonnées du coin en haut à gauche de la case cliquée
@@ -122,20 +134,19 @@ def displayWinner(mySurface, n, scores):
 # Procédure qui initialise et lance la partie
 def SOS(n):
     pygame.init()
-    HAUTEUR = n*75 + 140
-    LARGEUR = n*75 + 440
+    HAUTEUR = n * 75 + 140
+    LARGEUR = n * 75 + 440
     MARRON_CLAIR = (154, 130, 130)
 
     font = pygame.font.Font(None, 100)
-    titre = font.render("SOS Game !",1,MARRON_CLAIR)
+    titre = font.render("SOS Game !", 1, MARRON_CLAIR)
 
-
-    mySurface = pygame.display.set_mode((LARGEUR,HAUTEUR))
+    mySurface = pygame.display.set_mode((LARGEUR, HAUTEUR))
     pygame.display.set_caption('SOS Game')
     inProgress = True
-    
-    mySurface.fill((188,174,174))
-    mySurface.blit(titre, ((LARGEUR//4), 20))
+
+    mySurface.fill((188, 174, 174))
+    mySurface.blit(titre, ((LARGEUR // 4), 20))
     board = sosAlgorithms.newboard(n)
     drawBoard(mySurface, n)
 
@@ -150,6 +161,7 @@ def SOS(n):
                 inProgress = False
 
             displayScore(mySurface, n, scores)
+            displayPlayer(mySurface, n, player)
             pygame.display.update()
 
             if event.type == MOUSEBUTTONUP and event.button == 1 and \
@@ -165,10 +177,10 @@ def SOS(n):
 
                 i, j = case(i, j)
 
-                if sosAlgorithms.possibleSquare(board,n,i,j):
+                if sosAlgorithms.possibleSquare(board, n, i, j):
                     sosAlgorithms.update(board, n, i, j, l, scores, player, lines)
-                    drawCell(mySurface,board,i,j,player)
-                    drawLines(mySurface,lines, player)
+                    drawCell(mySurface, board, i, j, player)
+                    drawLines(mySurface, lines, player)
 
                     if player == 1:
                         player = 0
