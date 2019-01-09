@@ -19,28 +19,28 @@ def possibleSquare(board, n, i, j):
 def updateScoreS(board, n, i, j, scores, player, lines):
     board[i][j] = 1
     if possibleSquare(board, n, i, j):
-        if (board[i-1][j]==2 and board[i-2][j]==1):
+        if board[i-1][j]==2 and board[i-2][j]==1:
             scores[player] += 1
             lines = [[((i-1)*75+40+37),(j*75+100+37)],[((i-2)*75+40+37),(j*75+100+37)]]
-        elif(board[i+1][j]==2 and board[i+2][j]==1):
+        elif board[i+1][j]==2 and board[i+2][j]==1:
             scores[player] += 1
             lines = [[((i+1)*75+40+37),(j*75+100+37)],[((i+2)*75+40+37),(j*75+100+37)]]
-        elif(board[i][j-1]==2 and board[i][j-2]==1):
+        elif board[i][j-1]==2 and board[i][j-2]==1:
             scores[player] += 1
             lines = [[(i*75+40+37),((j-1)*75+100+37)],[(i*75+40+37),((j-2)*75+100+37)]]
-        elif(board[i][j+1]==2 and board[i][j+2]==1):
+        elif board[i][j+1]==2 and board[i][j+2]==1:
             scores[player] += 1
             lines = [[(i*75+40+37),((j+1)*75+100+37)],[(i*75+40+37),((j+2)*75+100+37)]]
-        elif(board[i-1][j-1]==2 and board[i-2][j-2]==1):
+        elif board[i-1][j-1]==2 and board[i-2][j-2]==1:
             scores[player] += 1
             lines = [[((i-1)*75+40+37),((j-1)*75+100+37)],[((i-2)*75+40+37),((j-2)*75+100+37)]]
-        elif(board[i+1][j+1]==2 and board[i+2][j+2]==1):
+        elif board[i+1][j+1]==2 and board[i+2][j+2]==1:
             scores[player] += 1
             lines = [[((i+1)*75+40+37),((j+1)*75+100+37)],[((i+2)*75+40+37),((j+2)*75+100+37)]]
-        elif( board[i+1][j-1]==2 and board[i+2][j-2]==1):
+        elif board[i+1][j-1]==2 and board[i+2][j-2]==1:
             scores[player] += 1
             lines = [[((i+1)*75+40+37),((j-1)*75+100+37)],[((i+2)*75+40+37),((j-2)*75+100+37)]]
-        elif(board[i-1][j+1]==2 and board[i-2][j+2]==1):
+        elif board[i-1][j+1]==2 and board[i-2][j+2]==1:
             scores[player] += 1
             lines = [[((i-1)*75+40+37),((j+1)*75+100+37)],[((i-2)*75+40+37),((j+2)*75+100+37)]]
 
@@ -48,16 +48,16 @@ def updateScoreS(board, n, i, j, scores, player, lines):
 def updateScoreO(board, n, i, j, scores, player, lines):
     board[i][j] = 2
     if possibleSquare(board, n, i,j):
-        if (board[i - 1][j] == 1 and board[i + 1][j] == 1):
+        if board[i - 1][j] == 1 and board[i + 1][j] == 1:
             scores[player] += 1
             lines = [[((i-1)*75+40+37),(j*75+100+37)],[((i+1)*75+40+37),(j*75+100+37)]]
-        elif (board[i][j - 1] == 1 and board[i][j + 1] == 1):
+        elif board[i][j - 1] == 1 and board[i][j + 1] == 1:
             scores[player] += 1
             lines = [[(i*75+40+37),((j-1)*75+100+37)],[(i*75+40+37),((j+1)*75+100+37)]]
-        elif(board[i - 1][j - 1] == 1 and board[i + 1][j + 1] == 1):
+        elif board[i - 1][j - 1] == 1 and board[i + 1][j + 1] == 1:
             scores[player] += 1
             lines = [[((i-1)*75+40+37),((j-1)*75+100+37)],[((i+1)*75+40+37),((j+1)*75+100+37)]]
-        elif(board[i - 1][j + 1] == 1 and board[i + 1][j - 1] == 1):
+        elif board[i - 1][j + 1] == 1 and board[i + 1][j - 1] == 1:
             scores[player] += 1
             lines = [[((i-1)*75+40+37),((j+1)*75+100+37)],[((i+1)*75+40+37),(j-1)*75+100+37]]
 
