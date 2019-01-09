@@ -12,7 +12,7 @@ import sosAlgorithms
 # Procédure qui dessine le tableau initial
 def drawBoard(mySurface,n):
     BLANC = (255, 255, 255)
-    MARRON_CLAIR = (112,104,104)
+    MARRON_CLAIR = (154,130,130)
 
     font = pygame.font.Font(None, 30)
 
@@ -108,12 +108,18 @@ def SOS(n):
     pygame.init()
     HAUTEUR = n*75 + 140
     LARGEUR = n*75 + 440
+    MARRON_CLAIR = (154, 130, 130)
+
+    font = pygame.font.Font(None, 100)
+    titre = font.render("SOS Game !",1,MARRON_CLAIR)
+
 
     mySurface = pygame.display.set_mode((LARGEUR,HAUTEUR))
     pygame.display.set_caption('SOS Game')
     inProgress = True
     
     mySurface.fill((188,174,174))
+    mySurface.blit(titre, ((LARGEUR//4), 20))
     board = sosAlgorithms.newboard(n)
     drawBoard(mySurface, n)
 
