@@ -8,7 +8,7 @@ import pygame
 from pygame.locals import *
 import sosAlgorithms
 
-############################################################" GRAPHISME #######################################################
+############################################################# GRAPHISME ###########################################################
 # Procédure qui dessine le tableau initial
 def drawBoard(mySurface,n):
     BLANC = (255, 255, 255)
