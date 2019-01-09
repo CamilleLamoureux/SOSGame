@@ -152,8 +152,8 @@ def SOS(n):
             displayScore(mySurface, n, scores)
             pygame.display.update()
 
-            if event.type == MOUSEBUTTONUP and event.button == 1 and 40 <= event.pos[0] <= (n + 1) * 75 and 100 <= \
-                    event.pos[1 <= (n + 1) * 75]:
+            if event.type == MOUSEBUTTONUP and event.button == 1 and \
+                    40 <= event.pos[0] <= (n + 1) * 75 and 100 <= event.pos[1 <= (n + 1) * 75]:
 
                 i = event.pos[0]
                 j = event.pos[1]
@@ -165,15 +165,15 @@ def SOS(n):
 
                 i, j = case(i, j)
 
-                sosAlgorithms.update(board, n, i, j, l, scores, player, lines)
-                drawCell(mySurface, board, i, j, player)
-                lines = [[(1 * 75 + 40 + 37, 1 + 75 + 100 + 37), (3 * 75 + 40 + 37, 3 * 75 + 100 + 37)]]
-                drawLines(mySurface, lines, player)
+                if sosAlgorithms.possibleSquare(board,n,i,j):
+                    sosAlgorithms.update(board, n, i, j, l, scores, player, lines)
+                    drawCell(mySurface,board,i,j,player)
+                    drawLines(mySurface,lines, player)
 
-                if player == 1:
-                    player = 0
-                else:
-                    player = 1
+                    if player == 1:
+                        player = 0
+                    else:
+                        player = 1
 
         # Test pour savoir si c'est la fin de la partie
         nbr = 0
