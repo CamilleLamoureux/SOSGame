@@ -2,8 +2,6 @@
 # Anaïs Depeau et Camille Lamoureux
 # Bibliotheque des fonctions algorithmiques permettant le jeu
 
-#Importation
-import sosGUI
 
 # Fonction de creation d'un nouveau tableau
 def newboard(n):
@@ -17,34 +15,44 @@ def newboard(n):
 def possibleSquare(board, n, i, j):
     return True if board[i][j] == 0  else False
 
+# Fonction qui permet de vérifier si les cases sont dans le tableau
+def isintheboard(i,j,n):
+    return True if 0<=i<n and 0<=j<n else False
 
 # Procedure qui met a jour lines et scores si on a pose un S
 def updateScoreS(board, n, i, j, scores, player, lines):
-    if board[i-1][j]==2 and board[i-2][j]==1:
-        scores[player] += 1
-        lines = [[((i-1)*75+40+37),(j*75+100+37)],[((i-2)*75+40+37),(j*75+100+37)]]
-    elif board[i+1][j]==2 and board[i+2][j]==1:
-        scores[player] += 1
-        lines = [[((i+1)*75+40+37),(j*75+100+37)],[((i+2)*75+40+37),(j*75+100+37)]]
-    elif board[i][j-1]==2 and board[i][j-2]==1:
-        scores[player] += 1
-        lines = [[(i*75+40+37),((j-1)*75+100+37)],[(i*75+40+37),((j-2)*75+100+37)]]
-    elif board[i][j+1]==2 and board[i][j+2]==1:
-        scores[player] += 1
-        lines = [[(i*75+40+37),((j+1)*75+100+37)],[(i*75+40+37),((j+2)*75+100+37)]]
-    elif board[i-1][j-1]==2 and board[i-2][j-2]==1:
-        scores[player] += 1
-        lines = [[((i-1)*75+40+37),((j-1)*75+100+37)],[((i-2)*75+40+37),((j-2)*75+100+37)]]
-    elif board[i+1][j+1]==2 and board[i+2][j+2]==1:
-        scores[player] += 1
-        lines = [[((i+1)*75+40+37),((j+1)*75+100+37)],[((i+2)*75+40+37),((j+2)*75+100+37)]]
-    elif board[i+1][j-1]==2 and board[i+2][j-2]==1:
-        scores[player] += 1
-        lines = [[((i+1)*75+40+37),((j-1)*75+100+37)],[((i+2)*75+40+37),((j-2)*75+100+37)]]
-    elif board[i-1][j+1]==2 and board[i-2][j+2]==1:
-        scores[player] += 1
-        lines = [[((i-1)*75+40+37),((j+1)*75+100+37)],[((i-2)*75+40+37),((j+2)*75+100+37)]]
 
+        if board[i-1][j]==2 and board[i-2][j]==1:
+            scores[player] += 1
+            lines = [[((i-1)*75+40+37),(j*75+100+37)],[((i-2)*75+40+37),(j*75+100+37)]]
+
+        elif board[i+1][j]==2 and board[i+2][j]==1:
+            scores[player] += 1
+            lines = [[((i+1)*75+40+37),(j*75+100+37)],[((i+2)*75+40+37),(j*75+100+37)]]
+
+        elif board[i][j-1]==2 and board[i][j-2]==1:
+            scores[player] += 1
+            lines = [[(i*75+40+37),((j-1)*75+100+37)],[(i*75+40+37),((j-2)*75+100+37)]]
+
+        elif board[i][j+1]==2 and board[i][j+2]==1:
+            scores[player] += 1
+            lines = [[(i*75+40+37),((j+1)*75+100+37)],[(i*75+40+37),((j+2)*75+100+37)]]
+
+        elif board[i-1][j-1]==2 and board[i-2][j-2]==1:
+            scores[player] += 1
+            lines = [[((i-1)*75+40+37),((j-1)*75+100+37)],[((i-2)*75+40+37),((j-2)*75+100+37)]]
+
+        elif board[i+1][j+1]==2 and board[i+2][j+2]==1:
+            scores[player] += 1
+            lines = [[((i+1)*75+40+37),((j+1)*75+100+37)],[((i+2)*75+40+37),((j+2)*75+100+37)]]
+
+        elif board[i+1][j-1]==2 and board[i+2][j-2]==1:
+            scores[player] += 1
+            lines = [[((i+1)*75+40+37),((j-1)*75+100+37)],[((i+2)*75+40+37),((j-2)*75+100+37)]]
+
+        elif board[i-1][j+1]==2 and board[i-2][j+2]==1:
+            scores[player] += 1
+            lines = [[((i-1)*75+40+37),((j+1)*75+100+37)],[((i-2)*75+40+37),((j+2)*75+100+37)]]
 
 
 # Procedure qui met a jour lines et scores si on a pose un O
@@ -61,7 +69,6 @@ def updateScoreO(board, n, i, j, scores, player, lines):
     elif board[i - 1][j + 1] == 1 and board[i + 1][j - 1] == 1:
         scores[player] += 1
         lines = [[((i-1)*75+40+37),((j+1)*75+100+37)],[((i+1)*75+40+37),(j-1)*75+100+37]]
-
 
 # Prodecudre qui met a jour le plateau de jeu
 # AJOUTER SCORES et LINES en variables
