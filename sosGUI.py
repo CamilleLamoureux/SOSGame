@@ -13,7 +13,7 @@ import sosAlgorithms
 # Procédure qui dessine le tableau initial
 def drawBoard(mySurface, n):
     BLANC = (255, 255, 255)
-    MARRON_CLAIR = (154, 130, 130)
+    MARRON_CLAIR = (168, 125, 125)
 
     font = pygame.font.Font(None, 30)
 
@@ -49,7 +49,7 @@ def drawBoard(mySurface, n):
 def displayScore(mySurface, n, scores):
     BLEU = (28, 95, 119)
     VIOLET = (87, 25, 83)
-    MARRON_CLAIR = (154, 130, 130)
+    MARRON_CLAIR = (168, 125, 125)
 
     font = pygame.font.Font(None, 46)
     font_joueur = pygame.font.Font(None, 33)
@@ -60,25 +60,24 @@ def displayScore(mySurface, n, scores):
     pts_joueur_2 = font_joueur.render(str(scores[1]), 1, (VIOLET))
     pygame.draw.rect(mySurface, (188, 174, 174), (40 + n * 75 + 205, 190, 75, 100))
 
-    mySurface.blit(affichage_scores, (40 + n * 75 + 70, 140))
-    mySurface.blit(joueur1, (40 + n * 75 + 90, 190))
-    mySurface.blit(pts_joueur_1, (40 + n * 75 + 210, 190))
-    mySurface.blit(joueur2, (40 + n * 75 + 90, 220))
-    mySurface.blit(pts_joueur_2, (40 + n * 75 + 210, 220))
+    mySurface.blit(affichage_scores, (40 + n * 75 + 60, 140))
+    mySurface.blit(joueur1, (40 + n * 75 + 100, 190))
+    mySurface.blit(pts_joueur_1, (40 + n * 75 + 215, 190))
+    mySurface.blit(joueur2, (40 + n * 75 + 100, 220))
+    mySurface.blit(pts_joueur_2, (40 + n * 75 + 215, 220))
 
 
 # Procédure qui permet d'afficher quel joueur doit jouer
 def displayPlayer(mySurface, n, player):
-    font = pygame.font.Font(None, 38)
-    quiletour = font.render("->", 1, (151,223,198))
-    pygame.draw.rect(mySurface, (188, 174, 174), (40 + n * 75 + 65, 180, 30, 100))
+    pygame.draw.rect(mySurface, (188, 174, 174), (40 + n * 75 + 55, 180, 30, 100))
+    fleche = pygame.image.load("flechejoueur.gif")
 
     if player == 0:
 
-        mySurface.blit(quiletour, (40 + n * 75 + 65, 185))
+        mySurface.blit(fleche, (40 + n * 75 + 55, 195))
     else:
 
-        mySurface.blit(quiletour, (40 + n * 75 + 65, 215))
+        mySurface.blit(fleche, (40 + n * 75 + 55, 220))
 
 
 # Fonction qui retourne les coordonnées du coin en haut à gauche de la case cliquée
@@ -126,7 +125,16 @@ def drawLines(mySurface, lines, player):
 
 # Procédure qui permet d'afficher le joueur gagnant
 def displayWinner(mySurface, n, scores):
-    print("Winner")
+    player = 0
+    player0 = player
+    player1 = 1
+    font = pygame.font.Font(None, 33)
+    if scores[player0] > scores[player1]:
+        gagnant = font.render("Le  joueur 1  a gagné la partie !", 1, (132,46,27))
+        mySurface.blit(gagnant, (40 + n * 75 + 45, 290))
+    else:
+        gagnant = font.render("Le  joueur 2  a gagné la partie !", 1, (157,62,12))
+        mySurface.blit(gagnant, (40 + n * 75 + 45, 290))
 
 
 ############################################################### JEU ##################################################################
@@ -136,10 +144,10 @@ def SOS(n):
     pygame.init()
     HAUTEUR = n * 75 + 140
     LARGEUR = n * 75 + 440
-    MARRON_CLAIR = (154, 130, 130)
+    MARRON_CLAIR = (168, 125, 125)
 
     font = pygame.font.Font(None, 100)
-    titre = font.render("SOS Game !", 1, MARRON_CLAIR)
+    titre = font.render("SOS Game!", 1, MARRON_CLAIR)
 
     mySurface = pygame.display.set_mode((LARGEUR, HAUTEUR))
     pygame.display.set_caption('SOS Game')
