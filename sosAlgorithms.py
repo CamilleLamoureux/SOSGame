@@ -25,43 +25,47 @@ def isintheboard(i, j, n):
 def updateScoreS(board, n, i, j, scores, player, lines):
     if isintheboard(i - 1, j, n) and board[i - 1][j] == 2 and isintheboard(i - 2, j, n) and board[i - 2][j] == 1:
         scores[player] += 1
-        lines.append([[((i - 1) * 75 + 40 + 37), (j * 75 + 100 + 37)], [((i - 2) * 75 + 40 + 37), (j * 75 + 100 + 37)]])
+        lines.append([[(i * 75 + 40 + 37), (j * 75 + 100 + 37)], \
+                      [((i - 2) * 75 + 40 + 37), (j * 75 + 100 + 37)]])
 
     if isintheboard(i + 1, j, n) and board[i + 1][j] == 2 and isintheboard(i + 2, j, n) and board[i + 2][j] == 1:
         scores[player] += 1
-        lines.append([[((i + 1) * 75 + 40 + 37), (j * 75 + 100 + 37)], [((i + 2) * 75 + 40 + 37), (j * 75 + 100 + 37)]])
+        lines.append([[(i * 75 + 40 + 37), (j * 75 + 100 + 37)], \
+                      [((i + 2) * 75 + 40 + 37), (j * 75 + 100 + 37)]])
 
     if isintheboard(i, j - 1, n) and board[i][j - 1] == 2 and \
             isintheboard(i, j - 2, n) and board[i][j - 2] == 1:
         scores[player] += 1
-        lines.append([[(i * 75 + 40 + 37), ((j - 1) * 75 + 100 + 37)], [(i * 75 + 40 + 37), ((j - 2) * 75 + 100 + 37)]])
+        lines.append([[(i * 75 + 40 + 37), (j * 75 + 100 + 37)], \
+                      [(i * 75 + 40 + 37), ((j - 2) * 75 + 100 + 37)]])
 
     if isintheboard(i, j + 1, n) and board[i][j + 1] == 2 and isintheboard(i, j + 2, n) and board[i][j + 2] == 1:
         scores[player] += 1
-        lines.append([[(i * 75 + 40 + 37), ((j + 1) * 75 + 100 + 37)], [(i * 75 + 40 + 37), ((j + 2) * 75 + 100 + 37)]])
+        lines.append([[(i * 75 + 40 + 37), (j * 75 + 100 + 37)],\
+                      [(i * 75 + 40 + 37), ((j + 2) * 75 + 100 + 37)]])
 
     if isintheboard(i - 1, j - 1, n) and board[i - 1][j - 1] == 2 \
             and isintheboard(i - 2, j - 2, n) and board[i - 2][j - 2] == 1:
         scores[player] += 1
-        lines.append([[((i - 1) * 75 + 40 + 37), ((j - 1) * 75 + 100 + 37)],
+        lines.append([[(i * 75 + 40 + 37), (j * 75 + 100 + 37)],
                       [((i - 2) * 75 + 40 + 37), ((j - 2) * 75 + 100 + 37)]])
 
     if isintheboard(i + 1, j + 1, n) and board[i + 1][j + 1] == 2 \
             and isintheboard(i + 2, j + 2, n) and board[i + 2][j + 2] == 1:
         scores[player] += 1
-        lines.append([[((i + 1) * 75 + 40 + 37), ((j + 1) * 75 + 100 + 37)],
+        lines.append([[(i * 75 + 40 + 37), (j * 75 + 100 + 37)],
                       [((i + 2) * 75 + 40 + 37), ((j + 2) * 75 + 100 + 37)]])
 
     if isintheboard(i + 1, j - 1, n) and board[i + 1][j - 1] == 2 \
             and isintheboard(i + 2, j - 2, n) and board[i + 2][j - 2] == 1:
         scores[player] += 1
-        lines.append([[((i + 1) * 75 + 40 + 37), ((j - 1) * 75 + 100 + 37)],
+        lines.append([[(i * 75 + 40 + 37), (j * 75 + 100 + 37)],
                       [((i + 2) * 75 + 40 + 37), ((j - 2) * 75 + 100 + 37)]])
 
     if isintheboard(i - 1, j + 1, n) and board[i - 1][j + 1] == 2 \
             and isintheboard(i - 2, j + 2, n) and board[i - 2][j + 2] == 1:
         scores[player] += 1
-        lines.append([[((i - 1) * 75 + 40 + 37), ((j + 1) * 75 + 100 + 37)],
+        lines.append([[(i * 75 + 40 + 37), (j * 75 + 100 + 37)],
                       [((i - 2) * 75 + 40 + 37), ((j + 2) * 75 + 100 + 37)]])
 
 

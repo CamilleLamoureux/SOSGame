@@ -118,9 +118,13 @@ def drawCell(mySurface, board, i, j, player):
 
 # Procédure qui dessine les nouvelles lignes représentant les alignements
 def drawLines(mySurface, lines, player):
-    NOIR = (0, 0, 0)
+    BLEU = (28, 95, 119)
+    VIOLET = (87, 25, 83)
+
+    COULEUR_JOUEUR = BLEU if player == 0 else VIOLET
+
     for ligne in lines:
-        pygame.draw.line(mySurface, NOIR, ligne[0], ligne[1], 5)
+        pygame.draw.line(mySurface, COULEUR_JOUEUR, ligne[0], ligne[1], 5)
 
 
 # Procédure qui permet d'afficher le joueur gagnant
