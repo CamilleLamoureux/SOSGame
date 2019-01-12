@@ -58,6 +58,7 @@ def displayScore(mySurface, n, scores):
     joueur2 = font_joueur.render("Joueur 2 :", 1, (VIOLET))
     pts_joueur_1 = font_joueur.render(str(scores[0]), 1, (BLEU))
     pts_joueur_2 = font_joueur.render(str(scores[1]), 1, (VIOLET))
+
     pygame.draw.rect(mySurface, (188, 174, 174), (40 + n * 75 + 205, 190, 75, 100))
 
     mySurface.blit(affichage_scores, (40 + n * 75 + 60, 140))
@@ -70,6 +71,7 @@ def displayScore(mySurface, n, scores):
 # Procédure qui permet d'afficher quel joueur doit jouer
 def displayPlayer(mySurface, n, player):
     pygame.draw.rect(mySurface, (188, 174, 174), (40 + n * 75 + 55, 180, 30, 100))
+
     fleche = pygame.image.load("flechejoueur.gif")
 
     if player == 0:
@@ -118,8 +120,8 @@ def drawCell(mySurface, board, i, j, player):
 
 # Procédure qui dessine les nouvelles lignes représentant les alignements
 def drawLines(mySurface, lines, player):
-    BLEU = (28, 95, 119)
-    VIOLET = (87, 25, 83)
+    BLEU = (8, 75, 99)
+    VIOLET = (67, 5, 63)
 
     COULEUR_JOUEUR = BLEU if player == 0 else VIOLET
 
@@ -133,6 +135,7 @@ def displayWinner(mySurface, n, scores):
     player0 = player
     player1 = 1
     font = pygame.font.Font(None, 33)
+    
     if scores[player0] > scores[player1]:
         gagnant = font.render("Le  joueur 1  a gagné la partie !", 1, (132,46,27))
         mySurface.blit(gagnant, (40 + n * 75 + 45, 290))
@@ -164,7 +167,6 @@ def SOS(n):
 
     player = 0
     scores = [0, 0]
-    lines = []
 
     while inProgress:
         for event in pygame.event.get():
@@ -190,6 +192,7 @@ def SOS(n):
                 i, j = case(i, j)
 
                 if sosAlgorithms.possibleSquare(board, n, i, j):
+                    lines = []
                     sosAlgorithms.update(board, n, i, j, l, scores, player, lines)
                     drawCell(mySurface, board, i, j, player)
                     drawLines(mySurface, lines, player)
