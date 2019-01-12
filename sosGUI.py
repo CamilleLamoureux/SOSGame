@@ -135,7 +135,7 @@ def drawLines(mySurface, lines, player):
     player0 = player
     player1 = 1
     font = pygame.font.Font(None, 33)
-    
+
     if scores[player0] > scores[player1]:
         gagnant = font.render("Le  joueur 1  a gagné la partie !", 1, (132,46,27))
         mySurface.blit(gagnant, (40 + n * 75 + 45, 290))
@@ -146,9 +146,18 @@ def drawLines(mySurface, lines, player):
 
 def displayWinner(mySurface, n, scores):
     font = pygame.font.Font(None, 33)
-    sosAlgorithms.winner(scores)
-    gagnant = font.render(winner(scores),1,(132,46,47))
+    
+    #Soit
+    winner = sosAlgorithms.winner(scores)
+    gagnant = font.render(winner,1,(132,46,47))
+    #Soit
+    gagnant = font.render(sosAlgorithms.winner(scores),1,(132,46,47))
+
     mySurface.blit(gagnant, (40 + n * 75 + 45, 290))
+
+
+
+
 
 
 ############################################################### JEU ##################################################################
