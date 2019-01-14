@@ -167,38 +167,58 @@ def displayWinner(mySurface, n, scores):
 # Procédure qui gère la partie
 def gameplay(mySurface, board, n, scores):
 
+    # Initialisation des variables
     player = 0
     inProgress = True
 
     while inProgress:
         for event in pygame.event.get():
+
             # Si on clique sur le bouton "fermer de la fenêtre"
             if event.type == QUIT:
                 inProgress = False
 
+            # Affichage des scores
             displayScore(mySurface, n, scores)
+
+            # Affichage de la flèche indiquant quel joueur doit jouer
             displayPlayer(mySurface, n, player)
+
+            # Mise à jour de l'affichage
             pygame.display.update()
 
+            # Si il y a un relache le bouton gauche de la souris et que le clic est dans le tableau
             if event.type == MOUSEBUTTONUP and event.button == 1 and \
-                    40 <= event.pos[0] <= (n + 1) * 75 and 100 <= event.pos[1 <= (n + 1) * 75]:
+                    MARGE_GAUCHE <= event.pos[0] <= (n + 1) * LARGEUR_CASE and MARGE_HAUT <= event.pos[1 <= (n + 1) * LARGEUR_CASE]:
 
+                # On stocke les coordonnées du clic
                 i = event.pos[0]
                 j = event.pos[1]
 
-                if (i + 40) % 75 <= 37:
+                # Si le clic est sur la partie gauche de la case
+                if (i - MARGE_GAUCHE) % LARGEUR_CASE <= DEMI_CASE:
                     l = 1
                 else:
                     l = 2
 
+                # Convertion des coordonnées en px en coordonnées pour le tableau
                 i, j = case(i, j)
 
+                # Si la case choisie est correcte
                 if sosAlgorithms.possibleSquare(board, n, i, j):
+                    # Remise à zéro de la variable qui stocke les sos du tour
                     lines = []
+
+                    # Mise à jour suite au changement
                     sosAlgorithms.update(board, n, i, j, l, scores, player, lines)
+
+                    # Mise à jour de la case
                     drawCell(mySurface, board, i, j, player)
+
+                    # Affichage des nouvelles lignes
                     drawLines(mySurface, lines, player)
 
+                    # Changement de joueur
                     if player == 1:
                         player = 0
                     else:
@@ -213,7 +233,10 @@ def gameplay(mySurface, board, n, scores):
                 else:
                     nbr += 1
         if nbr == n ** 2:
+            # Détermination du gagnant
             sosAlgorithms.winner(scores)
+
+            # Affichage du gagnant
             displayWinner(mySurface, n, scores)
 
     pygame.quit()
@@ -246,8 +269,9 @@ def SOS(n):
     # Initialisation des scores
     scores = [0, 0]
 
+    # Lancement de la partie
     gameplay(mySurface, board, n, scores)
 
-# Appel de la procédure permettant de lancer le jeu
+# Appel de la procédure permettant d'initialiser et lancer la partie
 n = int(input("Choisissez la taille de votre tableau de jeu : "))
 SOS(n)
