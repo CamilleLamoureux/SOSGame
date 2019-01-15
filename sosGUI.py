@@ -8,7 +8,6 @@ import pygame
 from pygame.locals import *
 import sosAlgorithms
 
-
 ############################################################# GRAPHISME ###########################################################
 # Déclaration des couleurs
 BLANC = (255, 255, 255)
@@ -24,6 +23,7 @@ LARGEUR_CASE = 75
 DEMI_CASE = 37
 MARGE_GAUCHE = 40
 MARGE_HAUT = 100
+
 
 # Procédure qui dessine le tableau initial
 def drawBoard(mySurface, n):
@@ -130,7 +130,8 @@ def drawCell(mySurface, board, i, j, player):
     l = board[i][j]
 
     # Affichage de la lettre choisie
-    pygame.draw.rect(mySurface, COULEUR_FOND, (i * LARGEUR_CASE + 2 + MARGE_GAUCHE, j * LARGEUR_CASE + 2 + MARGE_HAUT, 72, 72))
+    pygame.draw.rect(mySurface, COULEUR_FOND,
+                     (i * LARGEUR_CASE + 2 + MARGE_GAUCHE, j * LARGEUR_CASE + 2 + MARGE_HAUT, 72, 72))
     if l == 1:
         mySurface.blit(S, (i * LARGEUR_CASE + 15 + MARGE_GAUCHE, j * LARGEUR_CASE + 7 + MARGE_HAUT))
     elif l == 2:
@@ -139,7 +140,6 @@ def drawCell(mySurface, board, i, j, player):
 
 # Procédure qui dessine les nouvelles lignes représentant les alignements
 def drawLines(mySurface, lines, player):
-
     # Détermination de la couleur à utiliser
     COULEUR_JOUEUR = BLEU if player == 0 else VIOLET
 
@@ -150,23 +150,19 @@ def drawLines(mySurface, lines, player):
 
 # Procédure qui permet d'afficher le joueur gagnant
 def displayWinner(mySurface, n, scores):
-
+    # Détermination des couleurs à utiliser
+    COULEUR_GAGNANT = (231, 62, 1)
     # Déclaration de la police
-    font = pygame.font.Font(None, 33)
+    font = pygame.font.Font(None, 36)
 
     # Affichage du joueur gagnant
-    gagnant = font.render(sosAlgorithms.winner(scores),1,(132,46,47))
+    gagnant = font.render(sosAlgorithms.winner(scores), 1, (COULEUR_GAGNANT))
     mySurface.blit(gagnant, (40 + n * 75 + 45, 290))
-
-
-
-
 
 
 ############################################################### JEU ##################################################################
 # Procédure qui gère la partie
 def gameplay(mySurface, board, n, scores):
-
     # Initialisation des variables
     player = 0
     inProgress = True
@@ -189,7 +185,8 @@ def gameplay(mySurface, board, n, scores):
 
             # Si il y a un relache le bouton gauche de la souris et que le clic est dans le tableau
             if event.type == MOUSEBUTTONUP and event.button == 1 and \
-                    MARGE_GAUCHE <= event.pos[0] <= (n + 1) * LARGEUR_CASE and MARGE_HAUT <= event.pos[1 <= (n + 1) * LARGEUR_CASE]:
+                    MARGE_GAUCHE <= event.pos[0] <= (n + 1) * LARGEUR_CASE and MARGE_HAUT <= event.pos[
+                1 <= (n + 1) * LARGEUR_CASE]:
 
                 # On stocke les coordonnées du clic
                 i = event.pos[0]
@@ -240,13 +237,15 @@ def gameplay(mySurface, board, n, scores):
             displayWinner(mySurface, n, scores)
 
     pygame.quit()
+
+
 # Procédure qui initialise et lance la partie
 def SOS(n):
     pygame.init()
 
     # Déclaration du titre de la fenêtre
     font = pygame.font.Font(None, 70)
-    titre = font.render("SOS GAME "*n, 1, MARRON_CLAIR)
+    titre = font.render("SOS GAME " * n, 1, MARRON_CLAIR)
 
     # Déclaration de la taille de la fenêtre
     HAUTEUR = n * 75 + 140
@@ -258,7 +257,7 @@ def SOS(n):
 
     # Affichage du design choisit
     mySurface.fill(COULEUR_DE_FOND)
-    mySurface.blit(titre, (0,20))
+    mySurface.blit(titre, (0, 20))
 
     # Création du tableau
     board = sosAlgorithms.newboard(n)
@@ -271,6 +270,7 @@ def SOS(n):
 
     # Lancement de la partie
     gameplay(mySurface, board, n, scores)
+
 
 # Appel de la procédure permettant d'initialiser et lancer la partie
 n = int(input("Choisissez la taille de votre tableau de jeu : "))
