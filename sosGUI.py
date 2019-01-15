@@ -17,6 +17,7 @@ VIOLET = (87, 25, 83)
 BLEU_FOND = (186, 207, 214)
 VIOLET_FOND = (204, 186, 203)
 COULEUR_DE_FOND = (188, 174, 174)
+COULEUR_GAGNANT = (231, 62, 1)
 
 # Déclaration des tailles
 LARGEUR_CASE = 75
@@ -150,8 +151,7 @@ def drawLines(mySurface, lines, player):
 
 # Procédure qui permet d'afficher le joueur gagnant
 def displayWinner(mySurface, n, scores):
-    # Détermination des couleurs à utiliser
-    COULEUR_GAGNANT = (231, 62, 1)
+
     # Déclaration de la police
     font = pygame.font.Font(None, 36)
 
