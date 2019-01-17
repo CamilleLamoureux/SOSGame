@@ -8,6 +8,7 @@ DEMI_CASE = 37
 MARGE_GAUCHE = 40
 MARGE_HAUT = 100
 
+
 # Fonction de creation d'un nouveau tableau
 def newboard(n):
     board = []
@@ -28,106 +29,103 @@ def isintheboard(i, j, n):
 
 # Procedure qui met a jour lines et scores si on a pose un S
 def updateScoreS(board, n, i, j, scores, player, lines):
-
     # Vérification des cases à gauche
     if isintheboard(i - 1, j, n) and board[i - 1][j] == 2 and isintheboard(i - 2, j, n) and board[i - 2][j] == 1:
-
         scores[player] += 1
-        lines.append([[(i * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE), (j * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)], \
-                      [((i - 2) * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE), (j * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)]])
+        lines.append([[(i * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE), (j * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)],
+                      [((i - 2) * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE),
+                       (j * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)]])
 
     # Vérification des cases à droite
     if isintheboard(i + 1, j, n) and board[i + 1][j] == 2 and isintheboard(i + 2, j, n) and board[i + 2][j] == 1:
-
         scores[player] += 1
-        lines.append([[(i * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE), (j * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)], \
-                      [((i + 2) * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE), (j * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)]])
+        lines.append([[(i * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE), (j * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)],
+                      [((i + 2) * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE),
+                       (j * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)]])
 
     # Vérification des cases au dessus
     if isintheboard(i, j - 1, n) and board[i][j - 1] == 2 and isintheboard(i, j - 2, n) and board[i][j - 2] == 1:
-
         scores[player] += 1
-        lines.append([[(i * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE), (j * LARGEUR_CASE + MARGE_HAUT+ DEMI_CASE)],\
-                      [(i * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE), ((j - 2) * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)]])
+        lines.append([[(i * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE), (j * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)],
+                      [(i * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE),
+                       ((j - 2) * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)]])
 
     # Vérification des cases en dessous
     if isintheboard(i, j + 1, n) and board[i][j + 1] == 2 and isintheboard(i, j + 2, n) and board[i][j + 2] == 1:
-
         scores[player] += 1
-        lines.append([[(i * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE), (j * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)],\
-                      [(i * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE), ((j + 2) * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)]])
+        lines.append([[(i * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE), (j * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)],
+                      [(i * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE),
+                       ((j + 2) * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)]])
 
     # Vérification des cases en diagonale en haut à gauche
     if isintheboard(i - 1, j - 1, n) and board[i - 1][j - 1] == 2 \
             and isintheboard(i - 2, j - 2, n) and board[i - 2][j - 2] == 1:
-
         scores[player] += 1
         lines.append([[(i * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE), (j * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)],
-                      [((i - 2) * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE), ((j - 2) * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)]])
+                      [((i - 2) * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE),
+                       ((j - 2) * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)]])
 
     # Vérifiacation des cases en diagonale en bas à droite
     if isintheboard(i + 1, j + 1, n) and board[i + 1][j + 1] == 2 \
             and isintheboard(i + 2, j + 2, n) and board[i + 2][j + 2] == 1:
-
         scores[player] += 1
         lines.append([[(i * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE), (j * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)],
-                      [((i + 2) * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE), ((j + 2) * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)]])
+                      [((i + 2) * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE),
+                       ((j + 2) * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)]])
 
     # Vérification des cases en digonale en haut à droite
     if isintheboard(i + 1, j - 1, n) and board[i + 1][j - 1] == 2 \
             and isintheboard(i + 2, j - 2, n) and board[i + 2][j - 2] == 1:
-
         scores[player] += 1
         lines.append([[(i * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE), (j * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)],
-                      [((i + 2) * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE), ((j - 2) * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)]])
+                      [((i + 2) * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE),
+                       ((j - 2) * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)]])
 
     # Vérification des cases en diagonale en bas à gauche
     if isintheboard(i - 1, j + 1, n) and board[i - 1][j + 1] == 2 \
             and isintheboard(i - 2, j + 2, n) and board[i - 2][j + 2] == 1:
-
         scores[player] += 1
         lines.append([[(i * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE), (j * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)],
-                      [((i - 2) * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE), ((j + 2) * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)]])
+                      [((i - 2) * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE),
+                       ((j + 2) * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)]])
 
 
 # Procedure qui met a jour lines et scores si on a pose un O
 def updateScoreO(board, n, i, j, scores, player, lines):
+    # Vérification des cases à l'horizontale
+    if isintheboard(i - 1, j, n) and board[i - 1][j] == 1 and isintheboard(i + 1, j, n) and board[i + 1][j] == 1:
+        scores[player] += 1
+        lines.append(
+            [[((i - 1) * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE), (j * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)],
+             [((i + 1) * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE), (j * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)]])
 
     # Vérification des cases à la verticale
-    if isintheboard(i - 1, j, n) and board[i - 1][j] == 1 and isintheboard(i + 1, j, n) and board[i + 1][j] == 1:
-
-        scores[player] += 1
-        lines.append([[((i - 1) * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE), (j * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)],\
-                      [((i + 1) * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE), (j * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)]])
-
-    # Vérification des cases à l'horizontale
     if isintheboard(i, j - 1, n) and board[i][j - 1] == 1 and isintheboard(i, j + 1, n) and board[i][j + 1] == 1:
-
         scores[player] += 1
-        lines.append([[(i * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE), ((j - 1) * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)], \
-                      [(i * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE), ((j + 1) * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)]])
+        lines.append(
+            [[(i * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE), ((j - 1) * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)],
+             [(i * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE), ((j + 1) * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)]])
 
     # Vérification des cases en diagonale (de en haut à gauche à en bas à droite)
     if isintheboard(i - 1, j - 1, n) and board[i - 1][j - 1] == 1 \
             and isintheboard(i + 1, j + 1, n) and board[i + 1][j + 1] == 1:
-
         scores[player] += 1
-        lines.append([[((i - 1) * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE), ((j - 1) * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)],
-                      [((i + 1) * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE), ((j + 1) * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)]])
+        lines.append(
+            [[((i - 1) * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE), ((j - 1) * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)],
+             [((i + 1) * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE), ((j + 1) * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)]])
 
     # Vérification des cases en diagonale (de en bas à gauche à en haut à droite)
     if isintheboard(i - 1, j + 1, n) and board[i - 1][j + 1] == 1 \
             and isintheboard(i + 1, j - 1, n) and board[i + 1][j - 1] == 1:
-
         scores[player] += 1
-        lines.append([[((i - 1) * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE), ((j + 1) * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)],
-                      [((i + 1) * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE), ((j - 1) * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)]])
+        lines.append(
+            [[((i - 1) * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE), ((j + 1) * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)],
+             [((i + 1) * LARGEUR_CASE + MARGE_GAUCHE + DEMI_CASE), ((j - 1) * LARGEUR_CASE + MARGE_HAUT + DEMI_CASE)]])
 
 
 # Prodecudre qui met a jour le plateau de jeu
 # AJOUTER SCORES et LINES en variables
 def update(board, n, i, j, l, scores, player, lines):
-
     # Mise à jour du tableau
     board[i][j] = l
 

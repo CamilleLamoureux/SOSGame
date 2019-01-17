@@ -89,6 +89,8 @@ def displayScore(mySurface, n, scores):
     mySurface.blit(joueur2, (MARGE_GAUCHE + n * LARGEUR_CASE + MARGE_HAUT, 220))
     mySurface.blit(pts_joueur_2, (MARGE_GAUCHE + n * LARGEUR_CASE + 215, 220))
 
+    pygame.display.update()
+
 
 # Procédure qui permet d'afficher quel joueur doit jouer
 def displayPlayer(mySurface, n, player):
@@ -102,6 +104,8 @@ def displayPlayer(mySurface, n, player):
     else:
 
         mySurface.blit(fleche, (MARGE_GAUCHE + n * LARGEUR_CASE + 55, 220))
+
+    pygame.display.update()
 
 
 # Fonction qui retourne les coordonnées du coin en haut à gauche de la case cliquée
@@ -138,6 +142,8 @@ def drawCell(mySurface, board, i, j, player):
     elif l == 2:
         mySurface.blit(O, (i * LARGEUR_CASE + 12 + MARGE_GAUCHE, j * LARGEUR_CASE + 7 + MARGE_HAUT))
 
+    pygame.display.update()
+
 
 # Procédure qui dessine les nouvelles lignes représentant les alignements
 def drawLines(mySurface, lines, player):
@@ -147,6 +153,8 @@ def drawLines(mySurface, lines, player):
     # Affichage des lignes
     for ligne in lines:
         pygame.draw.line(mySurface, COULEUR_JOUEUR, ligne[0], ligne[1], 5)
+
+    pygame.display.update()
 
 
 # Procédure qui permet d'afficher le joueur gagnant
@@ -158,6 +166,8 @@ def displayWinner(mySurface, n, scores):
     # Affichage du joueur gagnant
     gagnant = font.render(sosAlgorithms.winner(scores), 1, (COULEUR_GAGNANT))
     mySurface.blit(gagnant, (40 + n * 75 + 45, 290))
+
+    pygame.display.update()
 
 
 ############################################################### JEU ##################################################################
@@ -179,9 +189,6 @@ def gameplay(mySurface, board, n, scores):
 
             # Affichage de la flèche indiquant quel joueur doit jouer
             displayPlayer(mySurface, n, player)
-
-            # Mise à jour de l'affichage
-            pygame.display.update()
 
             # Si il y a un relache le bouton gauche de la souris et que le clic est dans le tableau
             if event.type == MOUSEBUTTONUP and event.button == 1 and \
@@ -211,9 +218,12 @@ def gameplay(mySurface, board, n, scores):
 
                     # Mise à jour de la case
                     drawCell(mySurface, board, i, j, player)
+                    pygame.display.update()
+
 
                     # Affichage des nouvelles lignes
                     drawLines(mySurface, lines, player)
+                    pygame.display.update()
 
                     # Changement de joueur
                     if player == 1:
