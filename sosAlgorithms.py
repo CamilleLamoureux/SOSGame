@@ -11,6 +11,10 @@ MARGE_HAUT = 100
 
 # Fonction de creation d'un nouveau tableau
 def newboard(n):
+    """
+    :param n: taille du tableau
+    :return: le tableau initiale, remplit de zéro
+    """
     board = []                                                                                                          #création du tableau
     for ligne in range(n):
         board.append(n * [0])                                                                                           #pour chaque ligne du tableau, ajouter n élément vide [0] dans la liste
@@ -19,16 +23,39 @@ def newboard(n):
 
 # Fonction qui check si la case selectionnee par le joueur est correcte
 def possibleSquare(board, n, i, j):
+    """
+    :param board: liste à double dimension représentant le tableau
+    :param n: taille du tableau
+    :param i: numéro de la colonne de la case choisie (entre 0 et n)
+    :param j: numéro de la ligne de la case choisie (entre 0 et n)
+    :return: True si la case est vide, sinon False
+    """
     return True if board[i][j] == 0 else False                                                                          #si la case selectionnée est vide, retourner "True" > elle est disponible, sinon "False"
 
 
 # Fonction qui permet de vérifier si les cases sont dans le tableau
 def isintheboard(i, j, n):
+    """
+    :param i: numéro de la colonne de la case choisie (entre 0 et n)
+    :param j: numéro de la ligne de la case choisie (entre 0 et n)
+    :param n: taille du tableau
+    :return: True si la case indiquée est dans le tableau, sinon False
+    """
     return True if 0 <= i < n and 0 <= j < n else False                                                                 #retourner "True" si les coordonnées dont on se sert, que l'on utilise, sont dans le tableau de jeu, sinon "False"
 
 
 # Procedure qui met a jour lines et scores si on a pose un S
 def updateScoreS(board, n, i, j, scores, player, lines):
+    """
+    :param board: liste à double dimension représentant le tableau
+    :param n: taille du tableau
+    :param i: numéro de la colonne de la case choisie (entre 0 et n)
+    :param j: numéro de la ligne de la case choisie (entre 0 et n)
+    :param scores: liste contenant les scores des joueurs
+    :param player: (0 ou 1) numéro du joueur dont c'est le tour
+    :param lines: liste à double dimension de tuples contenant les coordonnées de début et de fin des nouveaux S-O-S
+    :return:nothing
+    """
     # Vérification des cases à gauche
     if isintheboard(i - 1, j, n) and board[i - 1][j] == 2 and isintheboard(i - 2, j, n) and board[i - 2][j] == 1:       #conditions: si case à gauche du "S posé" = 2 (donc = O) et si deux cases à gauche du "S" posé = 1 (donc = S), + vérif de isintheboard des 2 cases
         scores[player] += 1                                                                                             #ajouter un point au score du joueur qui pose a lettre
@@ -92,6 +119,16 @@ def updateScoreS(board, n, i, j, scores, player, lines):
 
 # Procedure qui met a jour lines et scores si on a pose un O
 def updateScoreO(board, n, i, j, scores, player, lines):
+    """
+    :param board: liste à double dimension représentant le tableau
+    :param n: taille du tableau
+    :param i: numéro de la colonne de la case choisie (entre 0 et n)
+    :param j: numéro de la ligne de la case choisie (entre 0 et n)
+    :param scores: liste contenant les scores des joueurs
+    :param player: (0 ou 1) numéro du joueur dont c'est le tour
+    :param lines: liste à double dimension de tuples contenant les coordonnées de début et de fin des nouveaux S-O-S
+    :return:nothing
+    """
     # Vérification des cases à l'horizontale
     if isintheboard(i - 1, j, n) and board[i - 1][j] == 1 and isintheboard(i + 1, j, n) and board[i + 1][j] == 1:       #condition: cases à gauche et à droite du "O" posé = 1 ( 1 étant = à S) & vérification si cases sont dans le tableau
         scores[player] += 1                                                                                             #ajouter un point au score du joueur qui pose la lettre
@@ -124,8 +161,18 @@ def updateScoreO(board, n, i, j, scores, player, lines):
 
 
 # Prodecudre qui met a jour le plateau de jeu
-# AJOUTER SCORES et LINES en variables
 def update(board, n, i, j, l, scores, player, lines):
+    """
+    :param board: liste à double dimension représentant le tableau
+    :param n: taille du tableau
+    :param i: numéro de la colonne de la case choisie (entre 0 et n)
+    :param j: numéro de la ligne de la case choisie (entre 0 et n)
+    :param l : (1 ou 2) représente la valeur de la lettre choisie (1 pour S et 2 pour O)
+    :param scores: liste contenant les scores des joueurs
+    :param player: (0 ou 1) numéro du joueur dont c'est le tour
+    :param lines: liste à double dimension de tuples contenant les coordonnées de début et de fin des nouveaux S-O-S
+    :return:nothing
+    """
     # Mise à jour du tableau
     board[i][j] = l
 
@@ -138,6 +185,10 @@ def update(board, n, i, j, l, scores, player, lines):
 
 # Fonction qui retourne le gagnant de la partie
 def winner(scores):
+    """
+    :param scores: liste contenant les scores des joueurs
+    :return: la chaine de caractère qui va s'afficher en fin de partie afin de dire qui a gagné
+    """
     if scores[0] > scores[1]:                                                                                           #condition: si le score final du joueur 1 est supérieure au score final du joueur 2
         return "Le joueur 1 gagne la partie !"                                                                          #inscription dans la fenêtre de jeu " Le joueur 1 gagne la partie"
     elif scores[0] == scores[1]:                                                                                        #autre condition: si les sscores finau sont égaux

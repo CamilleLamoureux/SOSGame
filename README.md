@@ -20,8 +20,7 @@ close the pygame window by clicking on the quit button of it
 ### Specifications
 Be Carefull : The pygame windows will grow depending the size of the table you chose, but not the screen of you're computer !
 
-This problem has not been resolved in time : the letter you chose will not appear until you make another mouse action (move or click)
-
+Please, check you got in the image "flechejoueur.gif" in the same folder as the "sosGUI.py" file.
 
 #Version française
 ###Jouer au jeu
@@ -42,5 +41,4 @@ Attention : La taille de la fenêtre pygame est différente en fonction de la ta
 tableau que vous choissisez, cependant nous ne pouvons pas changer la taille de l'écran 
 que lequel vous jouer
 
-Un problème n'a pas pu être résolu dans les temps : la lettre que vous avez choisie ne s'affichera pas tant que vous n'aurez pas faire
-une action avec votre souris (la bouger ou cliquer)
+Veuillez vérifier que vous avez l'image "flechejoueur.gif" dans le même dossier que le fichier "sosGUI.py"
