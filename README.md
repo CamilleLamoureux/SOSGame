@@ -4,7 +4,7 @@ Anaïs Depeau - 292053
 
 Camille Lamoureux - 291756
 
-#English version
+# English version
 ### Play the game
 1- Run "sosGUI.py"
 
@@ -22,8 +22,8 @@ Be Carefull : The pygame windows will grow depending the size of the table you c
 
 Please, check you got in the image "flechejoueur.gif" in the same folder as the "sosGUI.py" file.
 
-#Version française
-###Jouer au jeu
+# Version française
+### Jouer au jeu
 1- Lancer "sosGUI.py"
 
 2- Dans les lignes de commande, vous devrez entrer la taille de votre plateau de jeu
@@ -36,7 +36,7 @@ la fenêtre en cliquer sur le bouton "quitter" de celle-ci
 5- Si vous voulez faire une autre partie, lancer de nouveau "sosGUI.py"
 
 
-###Spécifications 
+### Spécifications 
 Attention : La taille de la fenêtre pygame est différente en fonction de la taille du 
 tableau que vous choissisez, cependant nous ne pouvons pas changer la taille de l'écran 
 que lequel vous jouer
